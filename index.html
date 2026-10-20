@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rovan Football Academy · Registration</title>
+<meta name="description" content="Register your child for Rovan Football Academy group training in Muharraq, Bahrain. Ages 5 to 13.">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0B0B0C;
+  --ink:#16181B;
+  --muted:#6B7078;
+  --line:#E3E4E1;
+  --bg:#F3F3F0;
+  --card:#FFFFFF;
+  --teal:#00CFB6;
+  --teal-dark:#007E70;
+  --teal-soft:#E3FAF6;
+  --danger:#C62828;
+  --radius:12px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Poppins,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:15px;line-height:1.5}
+.wrap{max-width:620px;margin:0 auto;padding:24px 16px 48px}
+.card{background:var(--card);border-radius:18px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06),0 8px 30px rgba(0,0,0,.05)}
+
+/* Header */
+.hero{background:var(--black);color:#fff;text-align:center;padding:32px 24px 28px;position:relative}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--teal)}
+.hero img.crest{width:96px;height:96px;display:block;margin:0 auto 14px}
+.hero h1{margin:0;font-size:24px;font-weight:700;letter-spacing:.2px}
+.hero p{margin:4px 0 0;color:#B9BDC2;font-size:14px}
+.hero .chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.hero .chip{border:1px solid #2C3034;border-radius:999px;padding:4px 12px;font-size:12.5px;color:#E6E8EA}
+.hero .chip b{color:var(--teal);font-weight:600}
+
+form{padding:8px 24px 28px}
+.section{padding-top:22px}
+.section h2{margin:0 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line);font-size:12.5px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{margin-bottom:16px}
+label.lbl{display:block;font-weight:600;font-size:14px;margin-bottom:6px}
+.req{color:var(--danger)}
+.opt-tag{font-weight:400;color:var(--muted);font-size:13px}
+input[type=text],input[type=tel],select,textarea{width:100%;font:inherit;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;min-height:48px;outline:none;transition:border-color .15s,box-shadow .15s}
+textarea{min-height:88px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--teal-dark);box-shadow:0 0 0 3px rgba(0,207,182,.18)}
+select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2316181B' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.hint{font-size:12.5px;color:var(--muted);margin-top:6px}
+.phone{display:grid;grid-template-columns:110px 1fr;gap:10px}
+.dob{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:10px}
+
+/* Choice buttons */
+.choices{display:grid;gap:10px}
+.choices.c2{grid-template-columns:1fr 1fr}
+.choices.c3{grid-template-columns:repeat(3,1fr)}
+.choice{position:relative;display:block;cursor:pointer}
+.choice input{position:absolute;opacity:0;pointer-events:none}
+.choice span{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:52px;padding:10px 8px;border:1.5px solid var(--line);border-radius:10px;font-weight:600;font-size:14.5px;background:#fff;transition:border-color .15s,background .15s}
+.choice span small{font-weight:400;color:var(--muted);font-size:12.5px;margin-top:2px}
+.choice:hover span{border-color:#C9CBC7}
+.choice input:checked + span{border-color:var(--black);background:var(--black);color:#fff}
+.choice input:checked + span small{color:var(--teal)}
+.choice input:focus-visible + span{box-shadow:0 0 0 3px rgba(0,207,182,.35)}
+
+/* Location radio cards */
+.loc{display:flex;align-items:center;gap:14px;border:1.5px solid var(--line);border-radius:12px;padding:14px 16px;cursor:pointer;margin-bottom:10px;background:#fff}
+.loc input{width:20px;height:20px;accent-color:var(--black);margin:0;flex:none}
+.loc b{display:block;font-size:15px}
+.loc small{color:var(--muted);font-size:13px}
+.loc:has(input:checked){border-color:var(--black)}
+
+.age-badge{display:none;margin-top:10px;background:var(--teal-soft);color:var(--teal-dark);border-radius:10px;padding:10px 14px;font-size:13.5px}
+.age-badge.show{display:block}
+.age-badge.bad{background:#FDECEC;color:var(--danger)}
+
+.note{border-left:4px solid var(--teal);background:var(--teal-soft);border-radius:0 10px 10px 0;padding:12px 16px;font-size:14px;color:#0E4A43;margin:4px 0 16px}
+
+.check{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;cursor:pointer;margin-bottom:10px;font-size:14px;background:#fff}
+.check input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--black);flex:none}
+
+/* Kit */
+.kit{display:grid;grid-template-columns:130px 1fr;gap:16px;align-items:center;border:1.5px solid var(--line);border-radius:14px;padding:14px;background:#FAFAF8}
+.kit img{width:130px;height:130px;object-fit:cover;border-radius:10px;display:block}
+.kit h3{margin:0 0 4px;font-size:16px}
+.kit p{margin:0 0 8px;color:var(--muted);font-size:13.5px}
+.kit .price{font-weight:700;font-size:18px}
+.kit .price small{font-weight:400;color:var(--muted);font-size:13px}
+#kitDetails{display:none;margin-top:14px}
+#kitDetails.show{display:block}
+
+/* Total */
+.total{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--black);color:#fff;border-radius:14px;padding:16px 18px;margin-top:22px}
+.total .t1{font-weight:600}
+.total .t2{font-size:12.5px;color:#A9AEB4}
+.total .amt{font-size:22px;font-weight:700;white-space:nowrap}
+.total .amt small{font-size:13px;font-weight:500;color:var(--teal)}
+.breakdown{font-size:13px;color:var(--muted);margin-top:8px;padding:0 4px}
+.breakdown div{display:flex;justify-content:space-between}
+
+button.primary{width:100%;margin-top:20px;min-height:56px;border:0;border-radius:12px;background:var(--teal);color:var(--black);font:inherit;font-weight:700;font-size:16px;cursor:pointer;transition:filter .15s,transform .05s}
+button.primary:hover{filter:brightness(.95)}
+button.primary:active{transform:translateY(1px)}
+button.ghost{width:100%;margin-top:10px;min-height:48px;border:1.5px solid var(--line);border-radius:12px;background:#fff;font:inherit;font-weight:600;cursor:pointer}
+
+.err{display:none;color:var(--danger);font-size:12.5px;margin-top:6px}
+.invalid .err{display:block}
+.invalid input[type=text],.invalid input[type=tel],.invalid select{border-color:var(--danger)}
+.invalid .choice span,.invalid .loc{border-color:#E9A5A5}
+.form-error{display:none;margin-top:14px;background:#FDECEC;color:var(--danger);border-radius:10px;padding:12px 14px;font-size:14px}
+.form-error.show{display:block}
+
+/* Done screen */
+#done{display:none;padding:32px 24px 28px;text-align:center}
+#done.show{display:block}
+#done .tick{width:64px;height:64px;border-radius:50%;background:var(--teal-soft);color:var(--teal-dark);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:30px;font-weight:700}
+#done h2{margin:0 0 6px;font-size:21px}
+#done p{margin:0 auto 6px;color:var(--muted);max-width:420px}
+.summary{text-align:left;background:#FAFAF8;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:18px 0 4px;font-size:14px}
+.summary div{display:flex;justify-content:space-between;gap:12px;padding:4px 0}
+.summary div span:first-child{color:var(--muted)}
+.summary div span:last-child{text-align:right;font-weight:500}
+.ref{display:inline-block;margin-top:8px;font-size:13px;color:var(--teal-dark);background:var(--teal-soft);padding:4px 10px;border-radius:999px;font-weight:600}
+a.wa-btn{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:18px;min-height:56px;border-radius:12px;background:#25D366;color:#fff;font-weight:700;font-size:16px;text-decoration:none}
+
+footer{text-align:center;color:var(--muted);font-size:13px;margin-top:22px}
+footer a{color:var(--ink);font-weight:600;text-decoration:none}
+
+/* Floating buttons */
+.fab{position:fixed;right:16px;bottom:16px;display:flex;flex-direction:column;gap:10px;z-index:10}
+.fab a{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.fab .ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%)}
+.fab .wa{background:#25D366}
+.fab svg{width:26px;height:26px;fill:#fff}
+
+@media (max-width:480px){
+  .wrap{padding:0 0 32px}
+  .fab{display:none}
+  .card{border-radius:0;box-shadow:none}
+  form{padding:4px 16px 24px}
+  #done{padding:28px 16px}
+  .kit{grid-template-columns:96px 1fr;gap:12px}
+  .kit img{width:96px;height:96px}
+  .choices.c3{grid-template-columns:repeat(3,1fr)}
+  .row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <header class="hero">
+      <img class="crest" src="assets/crest.png" alt="Rovan Football Academy crest">
+      <h1>Group Training Registration</h1>
+      <p id="seasonLabel"></p>
+      <div class="chips">
+        <span class="chip">Ages <b id="ageRange"></b></span>
+        <span class="chip">Small groups</span>
+        <span class="chip">Muharraq</span>
+      </div>
+    </header>
+
+    <form id="regForm" novalidate>
+      <div class="section">
+        <h2>Parent / guardian</h2>
+        <div class="field" data-field="parentName">
+          <label class="lbl" for="parentName">Full name <span class="req">*</span></label>
+          <input type="text" id="parentName" autocomplete="name">
+          <div class="err">Enter the parent or guardian's name</div>
+        </div>
+        <div class="field" data-field="phone">
+          <label class="lbl" for="phone">Phone number (WhatsApp) <span class="req">*</span></label>
+          <div class="phone">
+            <select id="countryCode" aria-label="Country code">
+              <option value="973">+973 BH</option>
+              <option value="966">+966 SA</option>
+              <option value="965">+965 KW</option>
+              <option value="971">+971 AE</option>
+              <option value="974">+974 QA</option>
+              <option value="968">+968 OM</option>
+            </select>
+            <input type="tel" id="phone" inputmode="numeric" placeholder="33123456" autocomplete="tel-national">
+          </div>
+          <div class="hint">For Bahrain, 8 digits without spaces</div>
+          <div class="err">Enter a valid phone number</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Player information</h2>
+        <div class="row">
+          <div class="field" data-field="firstName">
+            <label class="lbl" for="firstName">First name <span class="req">*</span></label>
+            <input type="text" id="firstName" autocomplete="off">
+            <div class="err">Enter the player's first name</div>
+          </div>
+          <div class="field" data-field="lastName">
+            <label class="lbl" for="lastName">Last name <span class="req">*</span></label>
+            <input type="text" id="lastName" autocomplete="off">
+            <div class="err">Enter the player's last name</div>
+          </div>
+        </div>
+        <div class="field" data-field="gender">
+          <span class="lbl">Gender <span class="req">*</span></span>
+          <div class="choices c2">
+            <label class="choice"><input type="radio" name="gender" value="Boy"><span>Boy</span></label>
+            <label class="choice"><input type="radio" name="gender" value="Girl"><span>Girl</span></label>
+          </div>
+          <div class="err">Choose a gender</div>
+        </div>
+        <div class="field" data-field="dob">
+          <span class="lbl">Date of birth <span class="req">*</span></span>
+          <div class="dob">
+            <select id="dobDay" aria-label="Day"><option value="">Day</option></select>
+            <select id="dobMonth" aria-label="Month"><option value="">Month</option></select>
+            <select id="dobYear" aria-label="Year"><option value="">Year</option></select>
+          </div>
+          <div class="age-badge" id="ageBadge"></div>
+          <div class="err" id="dobErr">Choose a valid date of birth</div>
+        </div>
+        <div class="field">
+          <label class="lbl" for="school">School <span class="opt-tag">(optional)</span></label>
+          <input type="text" id="school" autocomplete="off">
+        </div>
+        <div class="field">
+          <span class="lbl">Football experience</span>
+          <div class="choices c3">
+            <label class="choice"><input type="radio" name="level" value="Beginner" checked><span>Beginner</span></label>
+            <label class="choice"><input type="radio" name="level" value="Some experience"><span>Some</span></label>
+            <label class="choice"><input type="radio" name="level" value="Plays in a team"><span>Team player</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Training details</h2>
+        <div class="field" data-field="package">
+          <span class="lbl">Monthly package <span class="req">*</span></span>
+          <div class="choices c2" id="packageChoices"></div>
+          <div class="err">Choose a package</div>
+        </div>
+        <div class="field" data-field="location">
+          <span class="lbl">Training location <span class="req">*</span></span>
+          <div id="locationChoices"></div>
+          <div class="err">Choose a location</div>
+        </div>
+        <div class="field" data-field="days">
+          <span class="lbl">Preferred training days <span class="req">*</span></span>
+          <div class="choices c3" id="dayChoices"></div>
+          <div class="hint">Select all days that suit you</div>
+          <div class="err">Choose at least one day</div>
+        </div>
+        <div class="field">
+          <span class="lbl">Preferred time</span>
+          <div class="choices c3" id="timeChoices"></div>
+        </div>
+        <div class="note">Groups are kept small and organised by age. Our team will contact you on WhatsApp after registration to confirm your child's group, day and time.</div>
+        <label class="check"><input type="checkbox" id="sibling"><span>I'm also registering a brother or sister <span class="opt-tag" id="siblingNote"></span></span></label>
+      </div>
+
+      <div class="section">
+        <h2>Health &amp; safety</h2>
+        <div class="field">
+          <label class="lbl" for="medical">Medical conditions or allergies <span class="opt-tag">(optional)</span></label>
+          <textarea id="medical" placeholder="For example: asthma, allergies, injuries. Leave empty if none."></textarea>
+        </div>
+        <div class="row">
+          <div class="field" data-field="emName">
+            <label class="lbl" for="emName">Emergency contact <span class="req">*</span></label>
+            <input type="text" id="emName" placeholder="Name">
+            <div class="err">Enter an emergency contact</div>
+          </div>
+          <div class="field" data-field="emPhone">
+            <label class="lbl" for="emPhone">Emergency phone <span class="req">*</span></label>
+            <input type="tel" id="emPhone" inputmode="numeric" placeholder="33123456">
+            <div class="err">Enter a valid phone number</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Academy kit</h2>
+        <div class="kit">
+          <img src="assets/kit-closeup.jpg" alt="Rovan home kit collar and crest">
+          <div>
+            <h3>Train like a pro</h3>
+            <p id="kitDesc"></p>
+            <div class="price" id="kitPrice"></div>
+          </div>
+        </div>
+        <div class="field" data-field="kit" style="margin-top:14px">
+          <span class="lbl">Add the kit to your registration? <span class="req">*</span></span>
+          <div class="choices c2">
+            <label class="choice"><input type="radio" name="kit" value="yes"><span>Yes, add one</span></label>
+            <label class="choice"><input type="radio" name="kit" value="no"><span>No, thanks</span></label>
+          </div>
+          <div class="err">Choose yes or no</div>
+        </div>
+        <div id="kitDetails">
+          <div class="field" data-field="kitSize">
+            <label class="lbl" for="kitSize">Kit size <span class="req">*</span></label>
+            <select id="kitSize"><option value="">Choose size</option></select>
+            <div class="err">Choose a size</div>
+          </div>
+          <div class="row">
+            <div class="field" data-field="kitName">
+              <label class="lbl" for="kitName">Name on the back <span class="req">*</span></label>
+              <input type="text" id="kitName" maxlength="12" placeholder="AHMED" style="text-transform:uppercase">
+              <div class="err">Enter a name (max 12 letters)</div>
+            </div>
+            <div class="field" data-field="kitNumber">
+              <label class="lbl" for="kitNumber">Number <span class="req">*</span></label>
+              <input type="text" id="kitNumber" inputmode="numeric" maxlength="2" placeholder="10">
+              <div class="err">Enter a number from 1 to 99</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Final details</h2>
+        <div class="field">
+          <label class="lbl" for="comments">Additional comments <span class="opt-tag">(optional)</span></label>
+          <textarea id="comments" placeholder="Anything we should know?"></textarea>
+        </div>
+        <label class="check"><input type="checkbox" id="photoOk" checked><span>I allow photos and videos of my child to be shared on Rovan's social media.</span></label>
+        <div class="field" data-field="terms" style="margin-bottom:0">
+          <label class="check"><input type="checkbox" id="terms"><span>I confirm my child is fit to take part in football training, and I agree that payment is due before the first session. <span class="req">*</span></span></label>
+          <div class="err">Please confirm to continue</div>
+        </div>
+      </div>
+
+      <div class="total">
+        <div><div class="t1">Monthly total</div><div class="t2" id="totalHint">Choose a package to see the price</div></div>
+        <div class="amt" id="totalAmt">— <small>BHD</small></div>
+      </div>
+      <div class="breakdown" id="breakdown"></div>
+
+      <div class="form-error" id="formError">Please fix the highlighted fields above.</div>
+      <button type="submit" class="primary">Submit registration</button>
+    </form>
+
+    <div id="done" aria-live="polite">
+      <div class="tick">✓</div>
+      <h2>One last step</h2>
+      <p>Send your registration to us on WhatsApp so we can confirm your child's place.</p>
+      <span class="ref" id="refId"></span>
+      <div class="summary" id="summary"></div>
+      <a class="wa-btn" id="waSend" href="#" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-.9 1.2-.3.2-.6.1a8.1 8.1 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5.3-.5a.5.5 0 0 0 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.4 3.4 0 0 0-1 2.5 5.9 5.9 0 0 0 1.2 3.1 13.4 13.4 0 0 0 5.2 4.6c.7.3 1.3.5 1.7.6a4.2 4.2 0 0 0 1.9.1 3.1 3.1 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.2-.3-.3-.6-.4zM12 21.8a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4a9.8 9.8 0 1 1 8.3 4.6zm8.4-18.2A11.8 11.8 0 0 0 1.8 17.8L.1 24l6.4-1.7a11.8 11.8 0 0 0 5.6 1.4A11.9 11.9 0 0 0 20.4 3.6z"/></svg>
+        Send on WhatsApp
+      </a>
+      <button type="button" class="ghost" id="editBtn">Edit registration</button>
+    </div>
+  </div>
+
+  <footer>
+    Need help? Contact us on <a id="footerWa" href="#" target="_blank" rel="noopener">WhatsApp</a> · Follow us on <a id="footerIg" href="#" target="_blank" rel="noopener">Instagram</a><br>
+    Rovan Football Academy · Muharraq, Bahrain
+  </footer>
+</div>
+
+<div class="fab">
+  <a class="ig" id="igLink" href="#" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 4.6a5.2 5.2 0 1 0 0 10.4 5.2 5.2 0 0 0 0-10.4zm0 8.6a3.4 3.4 0 1 1 0-6.8 3.4 3.4 0 0 1 0 6.8zm5.4-9.9a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4z"/></svg></a>
+  <a class="wa" id="fabWa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-.9 1.2-.3.2-.6.1a8.1 8.1 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5.3-.5a.5.5 0 0 0 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.4 3.4 0 0 0-1 2.5 5.9 5.9 0 0 0 1.2 3.1 13.4 13.4 0 0 0 5.2 4.6c.7.3 1.3.5 1.7.6a4.2 4.2 0 0 0 1.9.1 3.1 3.1 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.2-.3-.3-.6-.4zM12 21.8a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4a9.8 9.8 0 1 1 8.3 4.6zm8.4-18.2A11.8 11.8 0 0 0 1.8 17.8L.1 24l6.4-1.7a11.8 11.8 0 0 0 5.6 1.4A11.9 11.9 0 0 0 20.4 3.6z"/></svg></a>
+</div>
+
+<script>
+// ===== Edit these settings =====
+const CONFIG = {
+  academy: "Rovan Football Academy",
+  season: "Season 2026/27",
+  whatsapp: "97300000000",              // academy WhatsApp number: country code + number, no + or spaces
+  instagram: "https://www.instagram.com/rovanfootball.bh/",
+  currency: "BHD",
+  minAge: 5,
+  maxAge: 13,
+  packages: [
+    { id: "4", label: "4 sessions", sub: "1 per week", price: 18 },
+    { id: "8", label: "8 sessions", sub: "2 per week", price: 30 }
+  ],
+  siblingDiscount: 0.10,                // 10% off training for siblings
+  kit: {
+    price: 15,
+    description: "Official Rovan home kit: shirt, shorts and socks, with your child's name and number on the back."
+  },
+  kitSizes: ["5–6 years", "7–8 years", "9–10 years", "11–12 years", "13 years / Small"],
+  locations: [
+    { id: "diyar", name: "Diyar Al Muharraq", sub: "Pitch to be confirmed" }
+  ],
+  days: ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu"],
+  times: ["4–5 PM", "5–6 PM", "6–7 PM"]
+};
+// ===============================
+
+const $ = id => document.getElementById(id);
+const fmt = n => n.toFixed(3);
+const waLink = text => "https://wa.me/" + CONFIG.whatsapp + (text ? "?text=" + encodeURIComponent(text) : "");
+
+$("seasonLabel").textContent = CONFIG.season;
+$("ageRange").textContent = CONFIG.minAge + "–" + CONFIG.maxAge;
+$("kitDesc").textContent = CONFIG.kit.description;
+$("kitPrice").innerHTML = fmt(CONFIG.kit.price) + " " + CONFIG.currency + " <small>one-time</small>";
+$("siblingNote").textContent = "(" + Math.round(CONFIG.siblingDiscount * 100) + "% off training)";
+["footerWa", "fabWa"].forEach(id => $(id).href = waLink(""));
+["igLink", "footerIg"].forEach(id => $(id).href = CONFIG.instagram);
+
+function choice(name, value, label, sub, type) {
+  const l = document.createElement("label");
+  l.className = "choice";
+  l.innerHTML = `<input type="${type || "radio"}" name="${name}" value="${value}"><span>${label}${sub ? `<small>${sub}</small>` : ""}</span>`;
+  return l;
+}
+CONFIG.packages.forEach(p => $("packageChoices").appendChild(choice("package", p.id, p.label, fmt(p.price) + " " + CONFIG.currency + " · " + p.sub)));
+CONFIG.days.forEach(d => $("dayChoices").appendChild(choice("days", d, d, "", "checkbox")));
+CONFIG.times.forEach(t => $("timeChoices").appendChild(choice("time", t, t, "", "checkbox")));
+CONFIG.locations.forEach((loc, i) => {
+  const l = document.createElement("label");
+  l.className = "loc";
+  l.innerHTML = `<input type="radio" name="location" value="${loc.id}"${CONFIG.locations.length === 1 ? " checked" : ""}><div><b>${loc.name}</b><small>${loc.sub}</small></div>`;
+  $("locationChoices").appendChild(l);
+});
+CONFIG.kitSizes.forEach(s => $("kitSize").add(new Option(s, s)));
+
+// Date of birth
+const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+for (let d = 1; d <= 31; d++) $("dobDay").add(new Option(d, d));
+months.forEach((m, i) => $("dobMonth").add(new Option(m, i + 1)));
+const thisYear = new Date().getFullYear();
+for (let y = thisYear - CONFIG.minAge + 1; y >= thisYear - CONFIG.maxAge - 1; y--) $("dobYear").add(new Option(y, y));
+
+function getDob() {
+  const d = +$("dobDay").value, m = +$("dobMonth").value, y = +$("dobYear").value;
+  if (!d || !m || !y) return null;
+  const date = new Date(y, m - 1, d);
+  if (date.getMonth() !== m - 1) return "invalid";
+  return date;
+}
+function ageOf(date) {
+  const t = new Date();
+  let a = t.getFullYear() - date.getFullYear();
+  if (t < new Date(t.getFullYear(), date.getMonth(), date.getDate())) a--;
+  return a;
+}
+function ageGroup(age) {
+  if (age <= 6) return "U7";
+  if (age <= 8) return "U9";
+  if (age <= 10) return "U11";
+  return "U13";
+}
+function updateAge() {
+  const b = $("ageBadge"), dob = getDob();
+  b.className = "age-badge";
+  if (!dob) return;
+  if (dob === "invalid") { b.textContent = "That date doesn't exist. Please check the day and month."; b.className = "age-badge show bad"; return; }
+  const age = ageOf(dob);
+  if (age < CONFIG.minAge || age > CONFIG.maxAge) {
+    b.textContent = `Age ${age}: our groups are for ages ${CONFIG.minAge}–${CONFIG.maxAge}. Message us on WhatsApp and we'll help.`;
+    b.className = "age-badge show bad";
+  } else {
+    b.textContent = `Age ${age} · ${ageGroup(age)} group`;
+    b.className = "age-badge show";
+  }
+}
+["dobDay", "dobMonth", "dobYear"].forEach(id => $(id).addEventListener("change", updateAge));
+
+// Kit toggle
+document.querySelectorAll('input[name=kit]').forEach(r => r.addEventListener("change", () => {
+  $("kitDetails").classList.toggle("show", r.value === "yes" && r.checked);
+}));
+$("kitNumber").addEventListener("input", e => e.target.value = e.target.value.replace(/\D/g, ""));
+["phone", "emPhone"].forEach(id => $(id).addEventListener("input", e => e.target.value = e.target.value.replace(/[^\d]/g, "")));
+
+// Totals
+const radio = n => (document.querySelector(`input[name=${n}]:checked`) || {}).value;
+const checks = n => [...document.querySelectorAll(`input[name=${n}]:checked`)].map(i => i.value);
+
+function calc() {
+  const pkg = CONFIG.packages.find(p => p.id === radio("package"));
+  const kit = radio("kit") === "yes";
+  if (!pkg) return null;
+  const training = pkg.price;
+  const discount = $("sibling").checked ? training * CONFIG.siblingDiscount : 0;
+  const kitCost = kit ? CONFIG.kit.price : 0;
+  return { pkg, training, discount, kitCost, total: training - discount + kitCost };
+}
+function updateTotal() {
+  const c = calc(), bd = $("breakdown");
+  if (!c) { $("totalAmt").innerHTML = `— <small>${CONFIG.currency}</small>`; $("totalHint").textContent = "Choose a package to see the price"; bd.innerHTML = ""; return; }
+  $("totalAmt").innerHTML = `${fmt(c.total)} <small>${CONFIG.currency}</small>`;
+  $("totalHint").textContent = c.kitCost ? "First month, including kit" : "Per month";
+  let rows = `<div><span>${c.pkg.label}</span><span>${fmt(c.training)}</span></div>`;
+  if (c.discount) rows += `<div><span>Sibling discount</span><span>−${fmt(c.discount)}</span></div>`;
+  if (c.kitCost) rows += `<div><span>Academy kit (one-time)</span><span>${fmt(c.kitCost)}</span></div>`;
+  bd.innerHTML = rows;
+}
+$("regForm").addEventListener("change", updateTotal);
+
+// Validation
+function setInvalid(field, bad) {
+  const el = document.querySelector(`[data-field=${field}]`);
+  if (el) el.classList.toggle("invalid", bad);
+  return bad;
+}
+function validate() {
+  const bad = [];
+  const txt = id => $(id).value.trim();
+  const phoneOk = (code, num) => code === "973" ? /^\d{8}$/.test(num) : /^\d{7,10}$/.test(num);
+  if (setInvalid("parentName", txt("parentName").length < 2)) bad.push("parentName");
+  if (setInvalid("phone", !phoneOk($("countryCode").value, txt("phone")))) bad.push("phone");
+  if (setInvalid("firstName", !txt("firstName"))) bad.push("firstName");
+  if (setInvalid("lastName", !txt("lastName"))) bad.push("lastName");
+  if (setInvalid("gender", !radio("gender"))) bad.push("gender");
+  const dob = getDob();
+  let dobBad = !dob || dob === "invalid";
+  if (!dobBad) { const a = ageOf(dob); dobBad = a < CONFIG.minAge || a > CONFIG.maxAge; }
+  $("dobErr").textContent = !dob ? "Choose a date of birth" : "Check the date of birth (ages " + CONFIG.minAge + "–" + CONFIG.maxAge + ")";
+  if (setInvalid("dob", dobBad)) bad.push("dob");
+  if (setInvalid("package", !radio("package"))) bad.push("package");
+  if (setInvalid("location", !radio("location"))) bad.push("location");
+  if (setInvalid("days", checks("days").length === 0)) bad.push("days");
+  if (setInvalid("emName", !txt("emName"))) bad.push("emName");
+  if (setInvalid("emPhone", !/^\d{7,12}$/.test(txt("emPhone")))) bad.push("emPhone");
+  if (setInvalid("kit", !radio("kit"))) bad.push("kit");
+  if (radio("kit") === "yes") {
+    if (setInvalid("kitSize", !$("kitSize").value)) bad.push("kitSize");
+    if (setInvalid("kitName", !/^[A-Za-z؀-ۿ .'-]{1,12}$/.test(txt("kitName")))) bad.push("kitName");
+    const n = +txt("kitNumber");
+    if (setInvalid("kitNumber", !(n >= 1 && n <= 99))) bad.push("kitNumber");
+  } else {
+    ["kitSize", "kitName", "kitNumber"].forEach(f => setInvalid(f, false));
+  }
+  if (setInvalid("terms", !$("terms").checked)) bad.push("terms");
+  return bad;
+}
+// Clear a field's error as soon as it is edited
+$("regForm").addEventListener("input", e => { const f = e.target.closest("[data-field]"); if (f) f.classList.remove("invalid"); $("formError").classList.remove("show"); });
+$("regForm").addEventListener("change", e => { const f = e.target.closest("[data-field]"); if (f) f.classList.remove("invalid"); $("formError").classList.remove("show"); });
+
+function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+
+$("regForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const bad = validate();
+  if (bad.length) {
+    $("formError").classList.add("show");
+    const first = document.querySelector("[data-field].invalid");
+    if (first) first.scrollIntoView({ behavior: "smooth", block: "center" });
+    return;
+  }
+  const c = calc();
+  const dob = getDob(), age = ageOf(dob);
+  const loc = CONFIG.locations.find(l => l.id === radio("location"));
+  const kit = radio("kit") === "yes";
+  const ref = "RFA-" + Date.now().toString(36).slice(-5).toUpperCase();
+  const player = $("firstName").value.trim() + " " + $("lastName").value.trim();
+  const dobStr = `${dob.getDate()} ${months[dob.getMonth()]} ${dob.getFullYear()}`;
+
+  const lines = [
+    `*New registration · ${CONFIG.academy}*`,
+    `Ref: ${ref}`,
+    ``,
+    `*Player*`,
+    `Name: ${player}`,
+    `Gender: ${radio("gender")}`,
+    `Date of birth: ${dobStr} (age ${age}, ${ageGroup(age)})`,
+    $("school").value.trim() ? `School: ${$("school").value.trim()}` : null,
+    `Experience: ${radio("level")}`,
+    ``,
+    `*Parent*`,
+    `Name: ${$("parentName").value.trim()}`,
+    `Phone: +${$("countryCode").value} ${$("phone").value.trim()}`,
+    ``,
+    `*Training*`,
+    `Package: ${c.pkg.label} (${c.pkg.sub})`,
+    `Location: ${loc.name}`,
+    `Days: ${checks("days").join(", ")}`,
+    checks("time").length ? `Time: ${checks("time").join(", ")}` : null,
+    $("sibling").checked ? `Sibling registering too: yes` : null,
+    ``,
+    `*Health*`,
+    `Medical: ${$("medical").value.trim() || "None"}`,
+    `Emergency contact: ${$("emName").value.trim()} (${$("emPhone").value.trim()})`,
+    ``,
+    `*Kit*: ${kit ? `${$("kitSize").value}, ${$("kitName").value.trim().toUpperCase()} #${$("kitNumber").value.trim()}` : "No"}`,
+    `Photos on social media: ${$("photoOk").checked ? "Allowed" : "Not allowed"}`,
+    $("comments").value.trim() ? `Comments: ${$("comments").value.trim()}` : null,
+    ``,
+    `*Total: ${fmt(c.total)} ${CONFIG.currency}*${c.kitCost ? " (first month incl. kit)" : " per month"}`
+  ].filter(l => l !== null);
+
+  $("waSend").href = waLink(lines.join("\n"));
+  $("refId").textContent = "Reference " + ref;
+  const rows = [
+    ["Player", player],
+    ["Group", `${ageGroup(age)} (age ${age})`],
+    ["Package", c.pkg.label],
+    ["Location", loc.name],
+    ["Days", checks("days").join(", ")],
+    ["Kit", kit ? `${$("kitName").value.trim().toUpperCase()} #${$("kitNumber").value.trim()}` : "No"],
+    ["Total", `${fmt(c.total)} ${CONFIG.currency}`]
+  ];
+  $("summary").innerHTML = rows.map(r => `<div><span>${r[0]}</span><span>${esc(r[1])}</span></div>`).join("");
+  $("regForm").style.display = "none";
+  $("done").classList.add("show");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+$("editBtn").addEventListener("click", () => {
+  $("done").classList.remove("show");
+  $("regForm").style.display = "";
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+</script>
+</body>
+</html>
